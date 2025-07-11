@@ -17,9 +17,7 @@ COPY backend/ .
 # Create uploads directory
 RUN mkdir -p uploads
 
-# Set default port
-ENV PORT=8000
-EXPOSE $PORT
+EXPOSE 8000
 
-# Use a startup script
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
+# Use fixed port for now
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
