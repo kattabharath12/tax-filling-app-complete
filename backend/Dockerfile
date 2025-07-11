@@ -8,12 +8,11 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements.txt (it's now in the same directory as Dockerfile)
-COPY requirements.txt .
+# Copy from the build context (which includes the backend folder)
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all files from current directory (backend/)
-COPY . .
+COPY backend/ .
 
 # Create uploads directory
 RUN mkdir -p uploads
