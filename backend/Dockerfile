@@ -21,5 +21,5 @@ RUN mkdir -p uploads
 ENV PORT=8000
 EXPOSE $PORT
 
-# Use shell form to allow environment variable expansion
-CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT
+# Use a startup script
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
